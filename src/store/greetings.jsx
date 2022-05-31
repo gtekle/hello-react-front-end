@@ -1,18 +1,17 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://localhost:3000/api/v1/';
+const BASE_URL = 'http://localhost:3001/api/v1';
 const FETCH_SUCCESS = 'greetings/messageFetched';
 const FETCH_FAIL = 'greetings/messageFetchFailed';
 
 export const fetchGreetings = (param) => async (dispatch) => {
   try {
-    const { greeting } = await axios.get(`${BASE_URL}/greetings`);
+    const { data } = await axios.get(`${BASE_URL}/greetings`);
     dispatch({
       type: FETCH_SUCCESS,
-      payload: greeting,
+      payload: data,
     });
   } catch (error) {
-    res = error;
     dispatch({
       type: FETCH_FAIL,
       payload: error,
@@ -21,7 +20,7 @@ export const fetchGreetings = (param) => async (dispatch) => {
 };
 
 const initialState = {
-  greeting: {},
+  message: null,
 };
 
 const greetingsReducer = (state = initialState, action) => {
@@ -29,7 +28,7 @@ const greetingsReducer = (state = initialState, action) => {
     case FETCH_SUCCESS:
       return {
         ...state,
-        greeting: action.payload
+        message: action.payload
       };
     case FETCH_FAIL:
       return initialState;
