@@ -15,7 +15,7 @@ const Greeting = props => {
 
   return (
     <>
-      <p>Refresh the page to fetch new greeting.</p>
+      <p>Fetch randomly generated greeting messages by refreshing the page.</p>
       <h1>{greetingMessage?.greeting}</h1>
     </>
   )
